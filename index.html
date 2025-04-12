@@ -18,7 +18,7 @@
 
         <h1>Neural Networks</h1>
 
-        <div>
+        <div id="webcamAndResultContainer">
 
             <div id="webcamContainer">
 
@@ -27,17 +27,79 @@
 
             </div>
 
-            <div id="feedbackContainer">
+            <div id="webcamSideBar">
+
+                <div id="webcamControls">
+
+                    <button id="startWebcam">Start webcam</button>
+                    <button id="stopWebcam">Stop webcam</button>
+                    <button id="testDetection">Make a pose</button>
+
+                </div>
+
+                <div id="feedbackContainer">
+
+                </div>
 
             </div>
 
         </div>
 
-        <div id="webcamControls">
+        <div id="websiteInfo">
 
-            <button id="startWebcam">Start webcam</button>
-            <button id="stopWebcam">Stop webcam</button>
-            <button id="testDetection">Test detection</button>
+            <h2>I'm not a fan of Neural Networks or AI in general</h2>
+
+            <p>
+                To demonstrate why, I've created this hopefully entertaining page. Here you can use your webcam to
+                record yourself doing one of the poses listed below. A Neural Network will then decide what pose you
+                struck and do something. To start, click the "start webcam" button to allow the website to use your
+                webcam. Once you can see the webcam, you can click the "Make a pose" button. After clicking, you get 3
+                seconds to get into your desired pose, after which it takes a photo and does something depending on what
+                pose it thinks you've made. Truly revolutionary and a good use of time and resources.
+            </p>
+
+            <div id="poseExplanations">
+
+                <div class="poseDescriptionContainer">
+
+                    <div class="imageContainer">
+                        <img src="./images/handsUp.jpg" alt="A clown holding it's hands up">
+                    </div>
+
+                    <p>
+                        You can put your hands up to say it's not your fault. Doing so will cause the page to give some
+                        reassurance.
+                    </p>
+
+                </div>
+
+                <div class="poseDescriptionContainer">
+
+                    <div class="imageContainer">
+                        <img src="./images/eyesCovered.jpg" alt="A clown covering their eyes">
+                    </div>
+
+                    <p>
+                        You can cover your eyes and turn away from my opinions. Doing so will take you to a more
+                        suitable page.
+                    </p>
+
+                </div>
+
+                <div class="poseDescriptionContainer">
+
+                    <div class="imageContainer">
+                        <img src="./images/fakeSurprise.webp" alt="A clown holding it's face in shock">
+                    </div>
+
+                    <p>
+                        You can act surprised by my opinion. Doing so will take you to a page that better demonstrates
+                        my point.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 

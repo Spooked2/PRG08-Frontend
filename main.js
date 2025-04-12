@@ -192,7 +192,6 @@ function startDetection() {
 
         const pose = detectPose();
         drawPose(pose);
-        console.log(pose);
 
         isWebcamRunning = false;
         videoElement.srcObject.getTracks()[0].stop();
@@ -208,7 +207,6 @@ function startDetection() {
         const result = await poseNN.classify(simplifiedPose);
 
         //TODO: Start doing things based on what was detected
-        console.log(result);
 
     }, 3000);
 

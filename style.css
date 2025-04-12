@@ -10,11 +10,13 @@ main {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    contain: paint;
+    padding: 2vh 5vw;
+    overflow: auto;
+    gap: 2vh;
 
-    >div {
-        width: 90%;
-        height: 90%;
+    > div {
+        width: 100%;
+        height: 100%;
     }
 }
 
@@ -22,16 +24,96 @@ video {
     position: absolute;
 }
 
+#homePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+
 #webcamContainer {
     position: relative;
-    width: 45vw;
-    min-height: 480px;
+    width: 50vw;
+    height: 35vh;
 }
 
 #landmarkOverlay {
     z-index: 2;
     position: absolute;
     pointer-events: none;
+}
+
+#webcamAndResultContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+
+#webcamSideBar {
+    display: flex;
+    flex-direction: column;
+}
+
+#webcamControls {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+#websiteInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+
+    >h2 {
+        font-size: 1.2rem;
+    }
+
+    >p {
+        font-size: 0.8rem;
+        width: 50vw;
+        text-align: center;
+    }
+}
+
+#poseExplanations {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2vw;
+    margin-top: 2vh;
+}
+
+.poseDescriptionContainer {
+    width: 20%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+
+    >p {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    contain: paint;
+    width: 15vw;
+    height: 15vh;
+
+    >img {
+        width: 75%;
+    }
 }
 
 .hidden {
