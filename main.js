@@ -25,6 +25,9 @@ const studentTemplate = {
     GPA: 0
 }
 
+let homePage;
+let studentPerformancePage;
+
 let videoElement;
 let canvas;
 let webcamControlContainer;
@@ -49,6 +52,8 @@ async function init() {
     webcamContainer = document.getElementById('webcamContainer');
     form = document.getElementById('studentForm');
     feedbackContainer = document.getElementById('feedbackContainer');
+    homePage = document.getElementById('homePage');
+    studentPerformancePage = document.getElementById('studentPerformancePage');
 
     //Add an event listener to the form so we can do things upon it's submission
     form.addEventListener("submit", submitHandler);
@@ -86,8 +91,7 @@ async function init() {
         //Add event listeners to buttons
         webcamControlContainer.addEventListener('click', controlWebcam);
 
-        //TODO: Un-hide the page once it's done loading
-        document.getElementById('homePage').classList.toggle('hidden');
+        homePage.classList.toggle('hidden');
 
     } catch (error) {
         console.error(error.message);
@@ -144,9 +148,7 @@ async function controlWebcam(e) {
 
     if (e.target.id === 'testDetection') {
 
-        clearTimeout(startTimer);
-
-        startTimer = setTimeout(startDetection, 2000);
+        startDetection();
 
     }
 
@@ -177,16 +179,16 @@ async function startWebcam() {
 
 }
 
-async function startDetection() {
-
-    videoElement.pause();
-
-    canvasContext.drawImage(videoElement, 0, 0);
+function startDetection() {
 
     //Reset the timers just in case
     clearTimeout(startTimer);
 
     startTimer = setTimeout(async () => {
+
+        videoElement.pause();
+
+        canvasContext.drawImage(videoElement, 0, 0);
 
         const pose = detectPose();
         drawPose(pose);

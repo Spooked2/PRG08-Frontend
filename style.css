@@ -18,6 +18,21 @@ main {
     }
 }
 
+video {
+    position: absolute;
+}
+
+#webcamContainer {
+    position: relative;
+    width: 45vw;
+    min-height: 480px;
+}
+
+#landmarkOverlay {
+    z-index: 2;
+    position: absolute;
+    pointer-events: none;
+}
 
 .hidden {
     display: none;
