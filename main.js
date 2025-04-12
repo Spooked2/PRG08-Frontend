@@ -27,6 +27,7 @@ const studentTemplate = {
 
 let homePage;
 let studentPerformancePage;
+let lastPose;
 
 let videoElement;
 let canvas;
@@ -41,6 +42,7 @@ let drawingUtils;
 let startTimer;
 let form;
 let feedbackContainer;
+let predictedGradeContainer;
 
 //Functions
 async function init() {
@@ -54,6 +56,9 @@ async function init() {
     feedbackContainer = document.getElementById('feedbackContainer');
     homePage = document.getElementById('homePage');
     studentPerformancePage = document.getElementById('studentPerformancePage');
+    predictedGradeContainer = document.getElementById('predictedGradeContainer');
+
+    document.getElementById('backButton').addEventListener('click', switchPage);
 
     //Add an event listener to the form so we can do things upon it's submission
     form.addEventListener("submit", submitHandler);
@@ -181,6 +186,11 @@ async function startWebcam() {
 
 function startDetection() {
 
+    //Prevent the detection of a pose if the webcam isn't running
+    if (!isWebcamRunning) {
+        return;
+    }
+
     //Reset the timers just in case
     clearTimeout(startTimer);
 
@@ -206,7 +216,28 @@ function startDetection() {
 
         const result = await poseNN.classify(simplifiedPose);
 
-        //TODO: Start doing things based on what was detected
+        const mostConfidentLabel = getMostConfidentLabel(result);
+
+        switch (mostConfidentLabel) {
+
+            case ('handsUp'):
+                handsUpAction();
+                break;
+
+            case ('eyesCovered'):
+                eyesCoveredAction();
+                break;
+
+            case ('fakeSurprise'):
+                fakeSurpriseAction();
+                break;
+
+            default:
+                console.error(mostConfidentLabel);
+
+        }
+
+        updateStyle();
 
     }, 3000);
 
@@ -253,19 +284,11 @@ async function submitHandler(e) {
 
     const result = await performanceNN.classify(newStudent);
 
-    let mostConfidentLabel = {confidence: 0};
-
-    for (const label of result) {
-
-        if (label.confidence > mostConfidentLabel.confidence) {
-            mostConfidentLabel = label
-        }
-
-    }
+    const mostConfidentLabel = getMostConfidentLabel(result);
 
     let grade = "no grade could be loaded!"
 
-    switch (mostConfidentLabel.label) {
+    switch (mostConfidentLabel) {
         case('0'):
             grade = 'A';
             break;
@@ -284,6 +307,58 @@ async function submitHandler(e) {
     }
 
     //TODO: Show better feedback to the user
-    feedbackContainer.innerText = `Your grades probably average around ${grade}`;
+    predictedGradeContainer.innerText = `Your grades probably average around ${grade}`;
+
+}
+
+function getMostConfidentLabel(result) {
+
+    let mostConfidentLabel = {confidence: 0};
+
+    for (const label of result) {
+
+        if (label.confidence > mostConfidentLabel.confidence) {
+            mostConfidentLabel = label
+        }
+
+    }
+
+    return mostConfidentLabel.label;
+
+}
+
+function switchPage() {
+
+    homePage.classList.toggle('hidden');
+
+    studentPerformancePage.classList.toggle('hidden');
+
+}
+
+function updateStyle() {
+
+
+
+}
+
+function handsUpAction() {
+
+    lastPose = 'handsUp';
+
+}
+
+function eyesCoveredAction() {
+
+    lastPose = 'eyesCovered';
+
+    window.open('https://aibusiness.com/ml/neural-networks', '_blank').focus();
+
+}
+
+function fakeSurpriseAction() {
+
+    lastPose = 'fakeSurprise';
+
+    switchPage();
 
 }

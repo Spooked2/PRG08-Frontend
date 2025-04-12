@@ -24,6 +24,11 @@ video {
     position: absolute;
 }
 
+form {
+    width: 40vw;
+    height: 70vh;
+}
+
 #homePage {
     display: flex;
     flex-direction: column;
@@ -116,6 +121,12 @@ video {
     }
 }
 
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+}
+
 .hidden {
-    display: none;
+    display: none !important;
 }
