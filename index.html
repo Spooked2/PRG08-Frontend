@@ -14,20 +14,140 @@
 
 <main>
 
-    <h1>Create pose data</h1>
+    <div id="homePage" class="hidden">
 
-    <div id="webcamControls">
+        <h1>Neural Networks</h1>
 
-        <button id="startWebcam">Start webcam</button>
-        <button id="stopWebcam">Stop webcam</button>
-        <button id="testDetection">Test detection</button>
+        <div>
+
+            <div id="webcamContainer">
+
+                <video id="webcamElement" src="" muted autoplay playsinline></video>
+                <canvas id="landmarkOverlay"></canvas>
+
+            </div>
+
+            <div id="feedbackContainer">
+
+            </div>
+
+        </div>
+
+        <div id="webcamControls">
+
+            <button id="startWebcam">Start webcam</button>
+            <button id="stopWebcam">Stop webcam</button>
+            <button id="testDetection">Test detection</button>
+
+        </div>
 
     </div>
 
-    <div id="webcamContainer">
+    <div id="studentPerformancePage" class="hidden">
 
-        <video id="webcamElement" src="" muted autoplay playsinline></video>
-        <canvas id="landmarkOverlay"></canvas>
+        <h1>Predict how well you'll do in school!</h1>
+
+        <form action="" id="studentForm" method="post">
+
+            <div class="inputContainer">
+                <label for="Age">Age</label>
+                <input type="number" min="15" max="18" step="1" id="Age" name="Age" required>
+            </div>
+
+            <div class="inputContainer">
+                <label for="Gender">Gender</label>
+                <select name="Gender" id="Gender" required>
+                    <option value="" selected disabled>Please select a gender</option>
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+            </div>
+
+            <div class="inputContainer">
+                <label for="Ethnicity">Ethnicity</label>
+
+                <select name="Ethnicity" id="Ethnicity" required>
+
+                    <option value="" selected disabled>Please select an ethnicity</option>
+                    <option value="0">Caucasian</option>
+                    <option value="1">African American</option>
+                    <option value="2">Asian</option>
+                    <option value="3">Other</option>
+
+                </select>
+            </div>
+
+            <div class="inputContainer">
+                <label for="ParentalEducation">What level of education did your parents get?</label>
+                <select name="ParentalEducation" id="ParentalEducation" required>
+
+                    <option value="" selected disabled>Please select an education level</option>
+                    <option value="0">None</option>
+                    <option value="1">High School</option>
+                    <option value="2">Some College</option>
+                    <option value="3">Bachelor's</option>
+                    <option value="4">Higher</option>
+
+                </select>
+            </div>
+
+            <div class="inputContainer">
+                <label for="StudyTimeWeekly">Roughly how long do you study per week?</label>
+                <input type="number" min="0" max="20" step="0.1" id="StudyTimeWeekly" name="StudyTimeWeekly" required>
+            </div>
+
+            <div class="inputContainer">
+                <label for="Absences">How many times have you been absent in the last year?</label>
+                <input type="number" min="0" max="30" step="1" id="Absences" name="Absences" required>
+            </div>
+
+            <div class="inputContainer">
+                <label for="Tutoring">I am getting tutored</label>
+                <input type="checkbox" id="Tutoring" name="Tutoring" value="1">
+            </div>
+
+            <div class="inputContainer">
+                <label for="ParentalSupport">How much support are you getting from your parents?</label>
+                <select name="ParentalSupport" id="ParentalSupport" required>
+
+                    <option value="" selected disabled>Please select a level of support</option>
+                    <option value="0">None</option>
+                    <option value="1">Low</option>
+                    <option value="2">Moderate</option>
+                    <option value="3">High</option>
+                    <option value="4">Very High</option>
+
+                </select>
+            </div>
+
+            <div class="inputContainer">
+                <label for="Extracurricular">Do you participate in any extracurricular activities?</label>
+                <input type="checkbox" id="Extracurricular" name="Extracurricular" value="1">
+            </div>
+
+            <div class="inputContainer">
+                <label for="Sports">Do you do any sports?</label>
+                <input type="checkbox" id="Sports" name="Sports" value="1">
+            </div>
+
+            <div class="inputContainer">
+                <label for="Music">Do you practice any form of music?</label>
+                <input type="checkbox" id="Music" name="Music" value="1">
+            </div>
+
+            <div class="inputContainer">
+                <label for="Volunteering">Have you done or are you doing volunteer work?</label>
+                <input type="checkbox" id="Volunteering" name="Volunteering" value="1">
+            </div>
+
+            <div class="inputContainer">
+                <label for="GPA">What is your current GPA?</label>
+                <input type="number" min="0" max="4" step="0.1" id="GPA" name="GPA" required>
+            </div>
+
+            <button type="submit">Predict average grade</button>
+
+        </form>
 
     </div>
 
