@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data collection</title>
+    <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+  <script type="module" crossorigin src="./assets/index-DFPam2j9.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C2EUKJRv.css">
+</head>
+<body>
+
+<main>
+
+    <div id="homePage" class="hidden">
+
+        <h1>Neural Networks</h1>
+
+        <div id="webcamAndResultContainer">
+
+            <div id="feedbackContainer" class="hidden">
+
+                <p>Don't worry about it, it's all good!</p>
+
+                <div class="imageContainer">
+                    <img src="./assets/thumbsUp-kpqhoVAR.png" alt="A smiling emoji giving a thumbs up">
+                </div>
+
+            </div>
+
+            <div id="webcamContainer">
+
+                <video id="webcamElement" src="" muted autoplay playsinline></video>
+                <canvas id="landmarkOverlay"></canvas>
+
+            </div>
+
+            <div id="webcamSideBar">
+
+                <div id="webcamControls">
+
+                    <button id="startWebcam">Start webcam</button>
+                    <button id="stopWebcam">Stop webcam</button>
+                    <button id="testDetection">Make a pose</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="websiteInfo">
+
+            <h2>I'm not a fan of Neural Networks or AI in general</h2>
+
+            <p>
+                Sadly I'm forced to make this anyway, so I've created this hopefully entertaining page. Here you can use
+                your webcam to
+                record yourself doing one of the three poses listed below. A Neural Network will then decide what pose
+                you
+                struck and do something. To start, click the "start webcam" button to allow the website to use your
+                webcam. Once you can see the webcam, you can click the "Make a pose" button. After clicking, you get 3
+                seconds to get into your desired pose, after which it takes a photo and does something depending on what
+                pose it thinks you've made. Truly revolutionary and a good use of time and resources.
+            </p>
+
+            <div id="poseExplanations">
+
+                <div class="poseDescriptionContainer">
+
+                    <div class="imageContainer">
+                        <img src="./assets/handsUp-DvB69OJW.jpg" alt="A clown holding it's hands up">
+                    </div>
+
+                    <p>
+                        You can put your hands up to say it's not your fault. Doing so will cause the page to give some
+                        reassurance.
+                    </p>
+
+                </div>
+
+                <div class="poseDescriptionContainer">
+
+                    <div class="imageContainer">
+                        <img src="./assets/eyesCovered-DlzAbTDq.jpg" alt="A clown covering their eyes">
+                    </div>
+
+                    <p>
+                        You can cover your eyes and turn away from my opinion. Doing so will take you to a more
+                        suitable page.
+                    </p>
+
+                </div>
+
+                <div class="poseDescriptionContainer">
+
+                    <div class="imageContainer">
+                        <img src="./assets/fakeSurprise-_C-oX3Xa.webp" alt="A clown holding it's face in shock">
+                    </div>
+
+                    <p>
+                        You can act surprised by my opinion. Doing so will take you to a page that demonstrates one of
+                        the Neural Network's shortcomings.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="studentPerformancePage" class="hidden">
+
+        <h1>Predict how well you'll do in school!</h1>
+
+        <button id="backButton">Go back</button>
+
+        <div id="performanceFormAndResultContainer">
+
+            <form action="" id="studentForm" method="post">
+
+                <div class="inputContainer">
+                    <label for="Age">Age</label>
+                    <input type="number" min="15" max="18" step="1" id="Age" name="Age" required>
+                </div>
+
+                <div class="inputContainer">
+                    <label for="Gender">Gender</label>
+                    <select name="Gender" id="Gender" required>
+                        <option value="" selected disabled>Please select a gender</option>
+                        <option value="0">Male</option>
+                        <option value="1">Female</option>
+                    </select>
+                </div>
+
+                <div class="inputContainer">
+                    <label for="Ethnicity">Ethnicity</label>
+
+                    <select name="Ethnicity" id="Ethnicity" required>
+
+                        <option value="" selected disabled>Please select an ethnicity</option>
+                        <option value="0">Caucasian</option>
+                        <option value="1">African American</option>
+                        <option value="2">Asian</option>
+                        <option value="3">Other</option>
+
+                    </select>
+                </div>
+
+                <div class="inputContainer">
+                    <label for="ParentalEducation">What level of education did your parents get?</label>
+                    <select name="ParentalEducation" id="ParentalEducation" required>
+
+                        <option value="" selected disabled>Please select an education level</option>
+                        <option value="0">None</option>
+                        <option value="1">High School</option>
+                        <option value="2">Some College</option>
+                        <option value="3">Bachelor's</option>
+                        <option value="4">Higher</option>
+
+                    </select>
+                </div>
+
+                <div class="inputContainer">
+                    <label for="StudyTimeWeekly">Roughly how long do you study per week?</label>
+                    <input type="number" min="0" max="20" step="0.1" id="StudyTimeWeekly" name="StudyTimeWeekly"
+                           required>
+                </div>
+
+                <div class="inputContainer">
+                    <label for="Absences">How many times have you been absent in the last year?</label>
+                    <input type="number" min="0" max="30" step="1" id="Absences" name="Absences" required>
+                </div>
+
+                <div class="inputContainer">
+                    <label for="Tutoring">I am getting tutored</label>
+                    <input type="checkbox" id="Tutoring" name="Tutoring" value="1">
+                </div>
+
+                <div class="inputContainer">
+                    <label for="ParentalSupport">How much support are you getting from your parents?</label>
+                    <select name="ParentalSupport" id="ParentalSupport" required>
+
+                        <option value="" selected disabled>Please select a level of support</option>
+                        <option value="0">None</option>
+                        <option value="1">Low</option>
+                        <option value="2">Moderate</option>
+                        <option value="3">High</option>
+                        <option value="4">Very High</option>
+
+                    </select>
+                </div>
+
+                <div class="inputContainer">
+                    <label for="Extracurricular">Do you participate in any extracurricular activities?</label>
+                    <input type="checkbox" id="Extracurricular" name="Extracurricular" value="1">
+                </div>
+
+                <div class="inputContainer">
+                    <label for="Sports">Do you do any sports?</label>
+                    <input type="checkbox" id="Sports" name="Sports" value="1">
+                </div>
+
+                <div class="inputContainer">
+                    <label for="Music">Do you practice any form of music?</label>
+                    <input type="checkbox" id="Music" name="Music" value="1">
+                </div>
+
+                <div class="inputContainer">
+                    <label for="Volunteering">Have you done or are you doing volunteer work?</label>
+                    <input type="checkbox" id="Volunteering" name="Volunteering" value="1">
+                </div>
+
+                <div class="inputContainer">
+                    <label for="GPA">What is your current GPA?</label>
+                    <input type="number" min="0" max="4" step="0.1" id="GPA" name="GPA" required>
+                </div>
+
+                <button type="submit">Predict average grade</button>
+
+            </form>
+
+            <div id="predictionResultsContainer">
+                <h2>Your predicted grade average</h2>
+                <p id="predictedGradeContainer"></p>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+</body>
+</html>
