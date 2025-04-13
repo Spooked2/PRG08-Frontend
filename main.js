@@ -28,6 +28,7 @@ const studentTemplate = {
 let homePage;
 let studentPerformancePage;
 let lastPose;
+let root;
 
 let videoElement;
 let canvas;
@@ -57,6 +58,7 @@ async function init() {
     homePage = document.getElementById('homePage');
     studentPerformancePage = document.getElementById('studentPerformancePage');
     predictedGradeContainer = document.getElementById('predictedGradeContainer');
+    root = document.querySelector(':root');
 
     document.getElementById('backButton').addEventListener('click', switchPage);
 
@@ -167,13 +169,10 @@ async function startWebcam() {
 
         videoElement.addEventListener("loadeddata", () => {
 
-            canvas.style.width = videoElement.videoWidth;
-            canvas.style.height = videoElement.videoHeight;
+            lastPose = 'none';
+            updateStyle();
 
-            canvas.width = videoElement.videoWidth;
-            canvas.height = videoElement.videoHeight;
-
-            webcamContainer.style.height = videoElement.videoHeight + "px";
+            webcamContainer.classList.remove('hidden');
 
             isWebcamRunning = true;
         });
@@ -198,10 +197,7 @@ function startDetection() {
 
         videoElement.pause();
 
-        canvasContext.drawImage(videoElement, 0, 0);
-
         const pose = detectPose();
-        drawPose(pose);
 
         isWebcamRunning = false;
         videoElement.srcObject.getTracks()[0].stop();
@@ -255,11 +251,6 @@ function clearCanvas() {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function drawPose(pose) {
-    drawingUtils.drawConnectors(pose, PoseLandmarker.POSE_CONNECTIONS, {color: "#FFDDEE", lineWidth: 5});
-    drawingUtils.drawLandmarks(pose, {radius: 4, color: "#FF00FF", lineWidth: 2});
-}
-
 async function submitHandler(e) {
 
     e.preventDefault();
@@ -306,8 +297,7 @@ async function submitHandler(e) {
             break;
     }
 
-    //TODO: Show better feedback to the user
-    predictedGradeContainer.innerText = `Your grades probably average around ${grade}`;
+    predictedGradeContainer.innerText = `${grade}`;
 
 }
 
@@ -337,7 +327,33 @@ function switchPage() {
 
 function updateStyle() {
 
+    switch (lastPose) {
 
+        case ('handsUp'):
+            root.style.setProperty('--background', '#7F7');
+            root.style.setProperty('--textColor', '#111');
+            feedbackContainer.classList.remove('hidden');
+            break;
+
+        case ('eyesCovered'):
+            root.style.setProperty('--background', '#111');
+            root.style.setProperty('--textColor', '#EEE');
+            feedbackContainer.classList.add('hidden');
+            break;
+
+        case ('fakeSurprise'):
+            root.style.setProperty('--background', '#DD9');
+            root.style.setProperty('--textColor', '#111');
+            feedbackContainer.classList.add('hidden');
+            break;
+
+        default:
+            root.style.setProperty('--background', '#DDD');
+            root.style.setProperty('--textColor', '#111');
+            feedbackContainer.classList.add('hidden');
+    }
+
+    webcamContainer.classList.add('hidden');
 
 }
 
