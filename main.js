@@ -77,17 +77,17 @@ async function init() {
     try {
 
         const studentPerformance = {
-            model: new URL('./models/studentPerformanceModel.json'),
-            metadata: new URL('./models/studentPerformanceModel_meta.json'),
-            weights: new URL('./models/studentPerformanceModel.weights.bin')
+            model: new URL('./models/studentPerformanceModel.json', import.meta.url).href,
+            metadata: new URL('./models/studentPerformanceModel_meta.json', import.meta.url).href,
+            weights: new URL('./models/studentPerformanceModel.weights.bin', import.meta.url).href
         }
 
         await performanceNN.load(studentPerformance, () => console.log("Student performance successfully loaded!"));
 
         const poseDetection = {
-            model: new URL('./models/poseDetection.json'),
-            metadata: new URL('./models/poseDetection_meta.json'),
-            weights: new URL('./models/poseDetection.weights.bin')
+            model: new URL('./models/poseDetection.json', import.meta.url).href,
+            metadata: new URL('./models/poseDetection_meta.json', import.meta.url).href,
+            weights: new URL('./models/poseDetection.weights.bin', import.meta.url).href
         }
 
         await poseNN.load(poseDetection, () => console.log("Pose detection successfully loaded!"));
