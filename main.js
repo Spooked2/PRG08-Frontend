@@ -24,7 +24,6 @@ const studentTemplate = {
     Volunteering: 0,
     GPA: 0
 }
-
 const model1 = new URL('./models/studentPerformanceModel.json', import.meta.url).href;
 const model1Meta = new URL('./models/studentPerformanceModel_meta.json', import.meta.url).href;
 const model1Weights = new URL('./models/studentPerformanceModel.weights.bin', import.meta.url).href;
@@ -118,7 +117,7 @@ async function init() {
 
 async function createPoseLandmarker() {
 
-    const vision = await FilesetResolver.forVisionTasks('./node_modules/@mediapipe/tasks-vision/wasm');
+    const vision = await FilesetResolver.forVisionTasks('./wasm');
 
     poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
         baseOptions: {
