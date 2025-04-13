@@ -6,7 +6,8 @@ export default defineConfig({
 
     build: {
         outDir: './docs',
-        emptyOutDir: true
+        emptyOutDir: true,
+        assetsInlineLimit: 0
     }
 
 });
