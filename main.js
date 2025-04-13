@@ -25,6 +25,13 @@ const studentTemplate = {
     GPA: 0
 }
 
+const model1 = new URL('./models/studentPerformanceModel.json', import.meta.url).href;
+const model1Meta = new URL('./models/studentPerformanceModel_meta.json', import.meta.url).href;
+const model1Weights = new URL('./models/studentPerformanceModel.weights.bin', import.meta.url).href;
+const model2 = new URL('./models/poseDetection.json', import.meta.url).href;
+const model2Meta = new URL('./models/poseDetection_meta.json', import.meta.url).href;
+const model2Weights = new URL('./models/poseDetection.weights.bin', import.meta.url).href;
+
 let homePage;
 let studentPerformancePage;
 let lastPose;
@@ -77,17 +84,17 @@ async function init() {
     try {
 
         const studentPerformance = {
-            model: new URL('./models/studentPerformanceModel.json', import.meta.url).href,
-            metadata: new URL('./models/studentPerformanceModel_meta.json', import.meta.url).href,
-            weights: new URL('./models/studentPerformanceModel.weights.bin', import.meta.url).href
+            model: model1,
+            metadata: model1Meta,
+            weights: model1Weights
         }
 
         await performanceNN.load(studentPerformance, () => console.log("Student performance successfully loaded!"));
 
         const poseDetection = {
-            model: new URL('./models/poseDetection.json', import.meta.url).href,
-            metadata: new URL('./models/poseDetection_meta.json', import.meta.url).href,
-            weights: new URL('./models/poseDetection.weights.bin', import.meta.url).href
+            model: model2,
+            metadata: model2Meta,
+            weights: model2Weights
         }
 
         await poseNN.load(poseDetection, () => console.log("Pose detection successfully loaded!"));
